@@ -1,4 +1,4 @@
-# INF222 H22
+# INF222 V23
 
 We are working on creating a gitlab where we share the solutions to the weekly experiences. In the meanwhile you can find the solution to Assigment 3, task 3.2 in this repo. 
 
