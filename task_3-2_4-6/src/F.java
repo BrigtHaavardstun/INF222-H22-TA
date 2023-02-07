@@ -6,6 +6,6 @@ public class F implements Expr{
      */
     @Override
     public ValueDomain2 evaluate() {
-        return new ValueDomain2C(0);
+        return new ValueDomain2C(false);
     }
 }

@@ -1,6 +1,6 @@
 public class Le implements Expr{
-    private Expr a;
-    private Expr b;
+    private final Expr a;
+    private final Expr b;
 
     public Le(Expr a, Expr b) {
         this.a = a;
@@ -8,9 +8,9 @@ public class Le implements Expr{
     }
 
     @Override
-    public ValueDomain2 evaluate() {
-        short a = this.a.evaluate().getValue();
-        short b = this.b.evaluate().getValue();
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        short a = this.a.evaluate().getShort();
+        short b = this.b.evaluate().getShort();
 
         if(a <= b){
             return new T().evaluate();

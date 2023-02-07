@@ -1,11 +1,17 @@
 public class And implements Expr{
-    private Expr a;
-    private Expr b;
+    private final Expr a;
+    private final Expr b;
+
+    public And(Expr a, Expr b) {
+        this.a = a;
+        this.b = b;
+    }
+
     @Override
-    public ValueDomain2 evaluate() {
-        short a = this.a.evaluate().getValue();
-        short b = this.b.evaluate().getValue();
-        if (a != 0 && b != 0){
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        boolean a = this.a.evaluate().getBoolean();
+        boolean b = this.b.evaluate().getBoolean();
+        if (a && b){
             return new T().evaluate();
         }
         return new F().evaluate();

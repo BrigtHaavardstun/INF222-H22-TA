@@ -1,6 +1,6 @@
 public class Mult implements Expr{
-    private Expr a;
-    private Expr b;
+    private final Expr a;
+    private final Expr b;
 
     public Mult(Expr a, Expr b) {
         this.a = a;
@@ -8,7 +8,7 @@ public class Mult implements Expr{
     }
 
     @Override
-    public ValueDomain2 evaluate() {
-        return new ValueDomain2C(a.evaluate().getValue()*b.evaluate().getValue());
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        return new ValueDomain2C(a.evaluate().getShort()*b.evaluate().getShort());
     }
 }

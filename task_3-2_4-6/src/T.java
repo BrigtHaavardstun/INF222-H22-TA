@@ -5,6 +5,6 @@ public class T implements Expr{
      */
     @Override
     public ValueDomain2 evaluate() {
-        return new ValueDomain2C(1);
+        return new ValueDomain2C(true);
     }
 }

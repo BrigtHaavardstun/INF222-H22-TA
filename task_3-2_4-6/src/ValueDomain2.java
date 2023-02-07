@@ -1,9 +1,13 @@
 public interface ValueDomain2 {
-    short getValue();
+    short getShort() throws IllegalAccessException;
+    boolean getBoolean() throws IllegalAccessException;
 }
 
 class ValueDomain2C implements ValueDomain2{
     private short a; // int16
+    private boolean b;
+
+    private boolean isShort;
 
     /**
      * Create a new ValueDomain2 class with a given short.
@@ -12,6 +16,7 @@ class ValueDomain2C implements ValueDomain2{
     public ValueDomain2C(short a)
     {
         this.a =a;
+        this.isShort = true;
     }
 
     /**
@@ -23,15 +28,14 @@ class ValueDomain2C implements ValueDomain2{
             a = 0;
         }
         this.a =((short)a);
+        this.isShort = true;
     }
 
-    /**
-     * Get value of this ValueDomain2 class
-     * @return
-     */
-    public short getValue() {
-        return a;
-    }
+   public ValueDomain2C(boolean b){
+        this.b = b;
+        this.isShort = false;
+   }
+
 
     /**
      * Print the value of the ValueDomain2C class.
@@ -39,6 +43,28 @@ class ValueDomain2C implements ValueDomain2{
      */
     @Override
     public String toString() {
-        return String.valueOf(getValue());
+        if(isShort){
+            return String.valueOf(a);
+        }
+        else{
+            return String.valueOf(b);
+        }
+    }
+
+    @Override
+    public short getShort() throws IllegalAccessException {
+        if(isShort) {
+            return a;
+        }
+        throw new IllegalAccessException("Can not ask for short when a bool is stored");
+    }
+
+    @Override
+    public boolean getBoolean() throws IllegalAccessException {
+        if(! isShort) {
+            return b;
+        }
+        throw new IllegalAccessException("Can not ask for bool when a short is stored");
+
     }
 }

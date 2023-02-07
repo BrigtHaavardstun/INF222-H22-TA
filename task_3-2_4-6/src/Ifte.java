@@ -1,7 +1,7 @@
 public class Ifte implements Expr{
-    private Expr a;
-    private Expr b;
-    private Expr c;
+    private final Expr a;
+    private final Expr b;
+    private final Expr c;
 
     public Ifte(Expr a, Expr b, Expr c) {
         this.a = a;
@@ -9,13 +9,13 @@ public class Ifte implements Expr{
         this.c = c;
     }
 
-    public ValueDomain2 evaluate(){
-        short a = this.a.evaluate().getValue();
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        boolean a = this.a.evaluate().getBoolean();
         ValueDomain2 b = this.b.evaluate();
         ValueDomain2 c = this.c.evaluate();
 
         // a != false -> a is true.
-        if (a != new F().evaluate().getValue()){
+        if (a){
             return b;
         } else {
             return c;

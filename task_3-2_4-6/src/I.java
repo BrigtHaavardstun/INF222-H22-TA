@@ -1,6 +1,6 @@
 public class I implements Expr{
 
-    private Expr i;
+    private final Expr i;
 
     public I(Expr i) {
         this.i = i;
@@ -8,7 +8,7 @@ public class I implements Expr{
 
 
     @Override
-    public ValueDomain2 evaluate() {
-        return new ValueDomain2C(i.evaluate().getValue()+ 1);
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        return new ValueDomain2C(i.evaluate().getShort()+ 1);
     }
 }

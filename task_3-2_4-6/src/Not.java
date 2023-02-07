@@ -1,13 +1,14 @@
 public class Not implements Expr{
-    private Expr a;
+    private final Expr a;
+
+    public Not(Expr a) {
+        this.a = a;
+    }
+
     @Override
-    public ValueDomain2 evaluate() {
-        short a = this.evaluate().getValue();
-        // a == 0 -> a is false. a!=0 -> a is true.
-        if(a == new F().evaluate().getValue()){
-            return new T().evaluate();
-        } else {
-            return new F().evaluate();
-        }
+    public ValueDomain2 evaluate() throws IllegalAccessException {
+        boolean a = this.a.evaluate().getBoolean();
+        return new ValueDomain2C(!a);
+
     }
 }

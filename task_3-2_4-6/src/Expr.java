@@ -1,4 +1,4 @@
 public interface Expr {
-    ValueDomain2 evaluate();
+    ValueDomain2 evaluate() throws IllegalAccessException;
 }
 
